@@ -9,6 +9,7 @@ Source1: wonderland-cursor.tar.bz2
 Source2: index.theme
 Source3: contrastlarge.tar.bz2
 License: MIT
+BuildRoot: %{_tmppath}/%{name}-root
 
 BuildRequires: x11-util-macros >= 1.0.1
 BuildRequires: xcursorgen >= 1.0.0
