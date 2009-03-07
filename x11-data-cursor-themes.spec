@@ -1,6 +1,6 @@
 Name: x11-data-cursor-themes
 Version: 1.0.1
-Release: %mkrel 7
+Release: %mkrel 8
 BuildArch: noarch
 Summary: X11 Cursor Themes
 Group: Development/X11
