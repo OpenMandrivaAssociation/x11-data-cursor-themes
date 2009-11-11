@@ -1,24 +1,22 @@
-Name: x11-data-cursor-themes
-Version: 1.0.2
-Release: %mkrel 1
-BuildArch: noarch
-Summary: X11 Cursor Themes
-Group: Development/X11
-Source: http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
-Source1: wonderland-cursor.tar.bz2
-Source2: index.theme
-Source3: contrastlarge.tar.bz2
-License: MIT
-BuildRoot: %{_tmppath}/%{name}-root
-
-BuildRequires: x11-util-macros >= 1.0.1
-BuildRequires: xcursorgen >= 1.0.0
-BuildRequires: libxcursor-devel >= 1.1.5.2
-
-Conflicts: xorg-x11 < 7.0
+Summary:	X11 Cursor Themes
+Name:		x11-data-cursor-themes
+Version:	1.0.2
+Release:	%mkrel 1
+Group:		Development/X11
+License:	MIT
+Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
+Source1:	wonderland-cursor.tar.bz2
+Source2:	index.theme
+Source3:	contrastlarge.tar.bz2
+BuildArch:	noarch
+BuildRequires:	x11-util-macros >= 1.0.1
+BuildRequires:	xcursorgen >= 1.0.0
+BuildRequires:	libxcursor-devel >= 1.1.5.2
+Conflicts:	xorg-x11 < 7.0
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
-X11 Cursor Themes
+Cursor themes for X11 environment.
 
 %prep
 %setup -q -n xcursor-themes-%{version}
@@ -33,8 +31,8 @@ X11 Cursor Themes
 rm -rf %{buildroot}
 %makeinstall_std
 
-tar xjv -C %{buildroot}%{_iconsdir} -f %{SOURCE1} 
-tar xjv -C %{buildroot}%{_iconsdir} -f %{SOURCE3} 
+tar xf -C %{buildroot}%{_iconsdir} -f %{SOURCE1} 
+tar xf -C %{buildroot}%{_iconsdir} -f %{SOURCE3} 
 mkdir -p %{buildroot}/%{_iconsdir}/default
 install -m 644 %{SOURCE2} %{buildroot}/%{_iconsdir}/default
 
@@ -77,6 +75,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
+%doc ChangeLog README
 %dir %{_datadir}/icons/default
 %dir %{_datadir}/icons/handhelds
 %dir %{_datadir}/icons/redglass
@@ -89,5 +88,3 @@ rm -rf %{buildroot}
 %{_datadir}/icons/whiteglass/*
 %{_datadir}/icons/wonderland/*
 %{_datadir}/icons/contrastlarge/*
-
-
