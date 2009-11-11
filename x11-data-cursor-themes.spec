@@ -31,8 +31,8 @@ Cursor themes for X11 environment.
 rm -rf %{buildroot}
 %makeinstall_std
 
-tar xf -C %{buildroot}%{_iconsdir} -f %{SOURCE1} 
-tar xf -C %{buildroot}%{_iconsdir} -f %{SOURCE3} 
+tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE1} 
+tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE3} 
 mkdir -p %{buildroot}/%{_iconsdir}/default
 install -m 644 %{SOURCE2} %{buildroot}/%{_iconsdir}/default
 
