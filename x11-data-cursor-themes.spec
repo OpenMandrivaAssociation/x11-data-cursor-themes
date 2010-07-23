@@ -1,7 +1,7 @@
 Summary:	X11 Cursor Themes
 Name:		x11-data-cursor-themes
 Version:	1.0.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Development/X11
 License:	MIT
 Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
@@ -35,6 +35,11 @@ tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE1}
 tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE3} 
 mkdir -p %{buildroot}/%{_iconsdir}/default
 install -m 644 %{SOURCE2} %{buildroot}/%{_iconsdir}/default
+
+# The contrastlarge "xterm" cursor is completly black, making it useless on a
+# dark background, but the theme authors provide an alternative:
+# xterm_extra_large
+mv %{buildroot}/%{_iconsdir}/contrastlarge/cursors/xterm_extra_large %{buildroot}/%{_iconsdir}/contrastlarge/cursors/xterm
 
 # Create Hash symlinks
 THEMES="contrastlarge handhelds redglass whiteglass wonderland"
@@ -74,7 +79,8 @@ done
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+# contrastlarge theme files have +x permission, undo this:
+%defattr(0644,root,root,0755)
 %doc ChangeLog README
 %dir %{_datadir}/icons/default
 %dir %{_datadir}/icons/handhelds
