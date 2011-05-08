@@ -22,9 +22,7 @@ Cursor themes for X11 environment.
 %setup -q -n xcursor-themes-%{version}
 
 %build
-%configure2_5x	--build=%_host --x-includes=%{_includedir}\
-		--x-libraries=%{_libdir}
-
+./configure --prefix=%{_prefix}
 %make
 
 %install
