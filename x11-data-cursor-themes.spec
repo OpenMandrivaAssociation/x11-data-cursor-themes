@@ -1,7 +1,7 @@
 Summary:	X11 Cursor Themes
 Name:		x11-data-cursor-themes
-Version:	1.0.3
-Release:	%mkrel 3
+Version:	1.0.4
+Release:	1
 Group:		Development/X11
 License:	MIT
 Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
@@ -9,11 +9,10 @@ Source1:	wonderland-cursor.tar.bz2
 Source2:	index.theme
 Source3:	contrastlarge.tar.bz2
 BuildArch:	noarch
-BuildRequires:	x11-util-macros >= 1.0.1
+BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	xcursorgen >= 1.0.0
-BuildRequires:	libxcursor-devel >= 1.1.5.2
+BuildRequires:	pkgconfig(xcursor) >= 1.1.5.2
 Conflicts:	xorg-x11 < 7.0
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 Cursor themes for X11 environment.
@@ -26,7 +25,6 @@ Cursor themes for X11 environment.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE1} 
@@ -73,12 +71,8 @@ for theme in $THEMES; do
     popd
 done
 
-%clean
-rm -rf %{buildroot}
-
 %files
 # contrastlarge theme files have +x permission, undo this:
-%defattr(0644,root,root,0755)
 %doc ChangeLog README
 %dir %{_datadir}/icons/default
 %dir %{_datadir}/icons/handhelds
