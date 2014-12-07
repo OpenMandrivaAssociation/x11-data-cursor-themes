@@ -1,7 +1,7 @@
 Summary:	X11 Cursor Themes
 Name:		x11-data-cursor-themes
 Version:	1.0.4
-Release:	7
+Release:	8
 Group:		Development/X11
 License:	MIT
 Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
