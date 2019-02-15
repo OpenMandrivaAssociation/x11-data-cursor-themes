@@ -1,7 +1,7 @@
 Summary:	X11 Cursor Themes
 Name:		x11-data-cursor-themes
-Version:	1.0.4
-Release:	13
+Version:	1.0.6
+Release:	11
 Group:		Development/X11
 License:	MIT
 Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
@@ -18,14 +18,14 @@ Conflicts:	xorg-x11 < 7.0
 Cursor themes for X11 environment.
 
 %prep
-%setup -q -n xcursor-themes-%{version}
+%autosetup -n xcursor-themes-%{version} -p1
 
 %build
 ./configure --prefix=%{_prefix}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE1} 
 tar xvj -C %{buildroot}%{_iconsdir} -f %{SOURCE3} 
@@ -57,18 +57,18 @@ e29285e634086352946a0e7090d73106=hand2 \
 fcf1c3c7cd4491d801f1e1c78f100000=top_right_corner"
 
 for theme in $THEMES; do
-    pushd %{buildroot}/%{_iconsdir}/$theme/cursors
+    cd %{buildroot}/%{_iconsdir}/$theme/cursors
 
     for link in $LINKS; do
-    	from=`echo $link | cut -d= -f1`
-    	to=`echo $link | cut -d= -f2`
+    	from=$(echo $link | cut -d= -f1)
+    	to=$(echo $link | cut -d= -f2)
 
     	if [ -e "$to" ] && [ ! -e "$from" ]; then
 	   ln -s "$to" "$from"
 	fi
     done
 
-    popd
+    cd -
 done
 
 %files
