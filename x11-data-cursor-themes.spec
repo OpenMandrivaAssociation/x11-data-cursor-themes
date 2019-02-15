@@ -73,7 +73,7 @@ done
 
 %files
 # contrastlarge theme files have +x permission, undo this:
-%doc ChangeLog README
+%doc ChangeLog
 %dir %{_datadir}/icons/default
 %dir %{_datadir}/icons/handhelds
 %dir %{_datadir}/icons/redglass
