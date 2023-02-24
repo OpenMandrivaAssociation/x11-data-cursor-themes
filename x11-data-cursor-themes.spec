@@ -1,10 +1,10 @@
 Summary:	X11 Cursor Themes
 Name:		x11-data-cursor-themes
-Version:	1.0.6
-Release:	11
+Version:	1.0.7
+Release:	1
 Group:		Development/X11
 License:	MIT
-Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.bz2 
+Source0:	http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.xz 
 Source1:	wonderland-cursor.tar.bz2
 Source2:	index.theme
 Source3:	contrastlarge.tar.bz2
@@ -70,6 +70,9 @@ for theme in $THEMES; do
 
     cd -
 done
+
+# For anaconda in LXQt
+ln -sf left_ptr %{buildroot}%{_iconsdir}/wonderland/cursors/arrow
 
 %files
 # contrastlarge theme files have +x permission, undo this:
